@@ -28,6 +28,9 @@ int sc_main(int argv, char* argc[]) {
   tb.clk(clock);
   tb.connection(connection_sg);
 
+  tb.p1(pipe12_sg);
+  tb.p2(pipe23_sg);
+
   pipe1.inData(instruction_sg);
   pipe1.outData(pipe12_sg);
   pipe1.clk(clock);

@@ -13,25 +13,25 @@ sc_in< sc_uint<INSTRUCTION_SIZE> > inData;
 sc_uint< INSTRUCTION_SIZE > data;
 sc_out< sc_uint<INSTRUCTION_SIZE> > outData;
 
-void read(){//clk+
-  if (clk) {
+void read(){//clk-
+  if (!clk) {
     outData = data;
   }
   return;
 }
 
 
-void write(){//clk-
-  if (!clk) {
+void write(){//clk+
+  if (clk) {
     data = inData;
   }
 }
 
 
 SC_CTOR(Register){
-  SC_METHOD(read); sensitive<<clk.pos();
+  SC_METHOD(read); sensitive<<clk.neg();
 
-  SC_METHOD(write); sensitive<<clk.neg();
+  SC_METHOD(write); sensitive<<clk.pos();
 }
 
 
