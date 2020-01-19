@@ -18,7 +18,7 @@ $ ./test
 
 # Diseño del microprocesador
 
-![Esquema Microproc](Esquema\ Microprocesador.svg.png)
+![Esquema Microproc](EsquemaMicroprocesador.svg.png)
 
 ## Instalación de SystemC
 
