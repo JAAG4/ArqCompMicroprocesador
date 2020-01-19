@@ -15,10 +15,10 @@
    version="1.1"
    id="SVGRoot"
    inkscape:version="0.92.4 (unknown)"
-   sodipodi:docname="Esquema Microprocesador.svg"
-   inkscape:export-filename="/home/jaag/Documentos/ULA/U-2019/ArqComp/repo/ArqCompMicroprocesador/Esquema Microprocesador.svg.png"
-   inkscape:export-xdpi="96.099998"
-   inkscape:export-ydpi="96.099998">
+   sodipodi:docname="EsquemaMicroprocesador.svg"
+   inkscape:export-filename="/home/jaag/Documentos/ULA/U-2019/ArqComp/repo/ArqCompMicroprocesador/EsquemaMicroprocesador.svg.png"
+   inkscape:export-xdpi="50"
+   inkscape:export-ydpi="50">
   <defs
      id="defs3986">
     <marker
@@ -1029,7 +1029,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.17400128"
-     inkscape:cx="1139.7786"
+     inkscape:cx="-291.24536"
      inkscape:cy="763.41059"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
@@ -1051,7 +1051,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1289,7 +1289,7 @@
            height="80"
            x="1430"
            y="700" /></flowRegion><flowPara
-         id="flowPara4943"></flowPara></flowRoot>    <g
+         id="flowPara4943" /></flowRoot>    <g
        id="g4958"
        transform="matrix(0.77777778,0,0,0.6875,355.39082,263.43775)">
       <rect
