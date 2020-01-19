@@ -3,15 +3,22 @@ Repositorio para el producto de Arquitectura del Computador, una simulación de 
 
 # Dependencias
 
-* SystemC
+* SystemC (Por defecto se usa la versión 2.3.3)
 
 # Para Compilar y ejecutar
 
-Por defecto, el makefile está configurado para sistemas de 64 bits
+Por defecto, el makefile está configurado para sistemas de 64 bits.
+Si ya se tiene todas las dependencias instaladas, simplemente:
+
 ```sh
 $ make
 $ ./test
 ```
+
+
+# Diseño del microprocesador
+
+![Esquema Microproc](Esquema\ Microprocesador.svg.png)
 
 ## Instalación de SystemC
 
