@@ -18,7 +18,7 @@ $ ./test
 
 # Diseño del microprocesador
 
-![Esquema Microproc](./EsquemaMicroprocesador.svg?sanitize=true)
+![Esquema Microproc](https://github.com/JAAG4/ArqCompMicroprocesador/blob/master/EsquemaMicroprocesador.svg)
 
 ## Instalación de SystemC
 
