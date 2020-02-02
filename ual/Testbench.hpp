@@ -54,9 +54,12 @@ SC_MODULE(Testbench){
     for (int i = 0; i < 12; i++) {
       op_id.write(i);
 
-      for (int j = 0,k=18; j < 20; j++,k--) {
+      for (int j = 0,k=18; j < 18; j++,k--) {
         firstOperator.write(j);
         secondOperator.write(k);
+        if(op_id.read() == DIV){
+          firstOperator.write(j*k);  
+        }
         wait();
         print();
       }
