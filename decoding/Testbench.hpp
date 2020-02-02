@@ -35,10 +35,9 @@ SC_MODULE(Testbench){
       case LOAD:cout<<"LOAD";break;
       case STORE:cout<<"STORE";break;
       case JZ:cout<<"JZ";break;
-      case JNZ:cout<<"JNZ";break;
       case JN:cout<<"JN";break;
       case JEQ:cout<<"JEQ";break;
-      
+
       default:cout<<"UNNAMED_INSTRUCTION("<<aux2<<")";break;
     }
     cout<< '\n';
