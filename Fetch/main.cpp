@@ -3,7 +3,7 @@
 
 #include "Fetch.h"
 #include "Testbench.h"
-#include "Register.hpp"
+#include "InstructionPipe.hpp"
 
 int sc_main(int argv, char* argc[]) {
   sc_time PERIOD(10,SC_NS);
