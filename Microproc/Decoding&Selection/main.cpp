@@ -14,7 +14,7 @@ int sc_main(int argv, char* argc[]) {
 
   sc_signal<sc_uint<ISZ>> fetchedInstruction_sg;
   sc_signal< sc_uint<OPCODESIZE> > opcode_sg;
-  sc_signal< sc_uint<PRECISION> > arg1_sg,arg2_sg;
+  sc_signal< sc_uint<ARGUMENTSZ> > arg1_sg,arg2_sg;
 
   tb.arg1(arg1_sg);
   dec.arg1(arg1_sg);

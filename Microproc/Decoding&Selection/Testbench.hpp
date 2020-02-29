@@ -7,11 +7,16 @@ SC_MODULE(Testbench){
 
   sc_out<sc_uint<ISZ>> fetchedInstruction;
   sc_in< sc_uint<OPCODESIZE> > opcode;
-  sc_in< sc_uint<PRECISION> > arg1,arg2;
+  sc_in< sc_uint<ARGUMENTSZ> > arg1,arg2;
 
   sc_uint<OPCODESIZE> opcode_aux;
 
   void print(){
+    for (int i = 0; i <ISZ; i++) {
+    std::cout << fetchedInstruction.read().range(i,i);
+    }
+    std::cout << " || ";
+
     opcode_aux = opcode.read();
     switch (opcode_aux) {
       case SUM:cout<<"SUM";break;

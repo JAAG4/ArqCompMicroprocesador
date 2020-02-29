@@ -2,10 +2,10 @@
 
 using namespace std;
 
-#ifndef REGISTER
-#define REGISTER
+#ifndef INSTRPIPE
+#define INSTRPIPE
 
-SC_MODULE(Register){
+SC_MODULE(InstrPipe){
 
 sc_in<bool> clk;
 
@@ -28,16 +28,16 @@ void write(){//clk+
 }
 
 
-SC_CTOR(Register){
+SC_CTOR(InstrPipe){
   SC_METHOD(read); sensitive<<clk.neg();
 
   SC_METHOD(write); sensitive<<clk.pos();
 }
 
 
-~Register(){
+~InstrPipe(){
 
 }
 };
 
-#endif//REGISTER
+#endif//INSTRPIPE
