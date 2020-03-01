@@ -6,7 +6,7 @@
 SC_MODULE(Selection){
   sc_in<sc_uint<ISZ>> fetchedInstruction;
   sc_out< sc_uint<OPCODESIZE> > opcode;
-  sc_out< sc_uint<> > arg1,arg2;
+  sc_out< sc_uint<ARGUMENTSZ> > arg1,arg2;
   sc_in<bool>clk;
 
   void decode(){   if(false){return;}

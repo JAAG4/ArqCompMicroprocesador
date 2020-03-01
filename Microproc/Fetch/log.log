@@ -1,0 +1,3 @@
+g++ -g -Wno-deprecated -Wall -I. -I.. -I/usr/local/systemc-2.3.3/include -c main.cpp
+Makefile:58: recipe for target 'main.o' failed
+
