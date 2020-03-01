@@ -8,7 +8,7 @@ using namespace std;
 #ifndef FETCH
 #define FETCH
 
-#define instrMem_filename "in.txt"
+#define instrMem_filename "in.bin"
 
 SC_MODULE (Fetch) {
   ifstream instrMem;
@@ -19,21 +19,27 @@ SC_MODULE (Fetch) {
   sc_in< sc_uint<PRECISION> > pc;
 
   SC_CTOR (Fetch) {
-    instrMem.open(instrMem_filename);
+    instrMem.open(instrMem_filename,ios::binary);
 
     SC_METHOD(fetch);
     sensitive<<clk.neg();
   }
 
   void fetch() {
-    string temp;
+    char temp[ISZ];
     sc_uint<ISZ> tempi;
-    int pci = pc.read().to_int() * (ISZ+2);
-    cout<<"pc<"<<pci<<">";
+    int pci = (pc.read().to_int() * (ISZ)) ;
+    cout<<"byte<"<<pci<<">";
 
-    instrMem.seekg(pci);
-    getline(instrMem,temp);
+    instrMem.seekg(pci,ios::beg);
 
+    if (instrMem.eof()) {cout<<"READING ERROR"<<endl;
+    instruction=0;
+      return;
+    }
+
+    instrMem.read(temp,ISZ);
+    std::cout << "temp"<<temp<< '\n';
     for (int i = 0; i < ISZ; i++) {
     tempi[ISZ-i-1] = temp[i] - '0';
 

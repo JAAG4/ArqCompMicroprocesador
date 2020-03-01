@@ -8,15 +8,15 @@ using namespace std;
 SC_MODULE(Testbench) {
 
   sc_in<bool> clk;
-  int clkc;
+  int clkc=0;
   sc_in< sc_uint<ISZ> > instruction;
-  sc_out< sc_uint<PRECISION> > pc;
+  sc_in< sc_uint<PRECISION> > pc;
 
-  sc_out<sc_uint<PRECISION>> wbData;
-  sc_out<bool> select;
+  sc_out<sc_uint<PRECISION>> wbDir;
+  sc_out<bool> enable;
 
   void print() {
-    cout<<"|"<<setw(2)<<pc<<"|"<<" ";
+    cout<<"|"<<setw(2)<<pc.read().to_int()<<"|"<<" ";
     cout << "\t";
 
     for (int i = 0; i < 14; ++i)
@@ -28,17 +28,23 @@ SC_MODULE(Testbench) {
   }
   void test() {
     cout << "\n"
-         << "PC\t\t Instrucción(BIN) | (DEC) | CLK |"
-         << "\t\t----------------------------------------------------------------\n";
+         << "PC\tInstrucción(BIN) | (DEC) | CLK |"
+         << "\n----------------------------------------------------------------\n";
 
 
-    for (int i = 0; i < 10*3; i++) {
+    for (int i = 0; i < 10; i++) {
       wait();
       print();
     }
-
-    wbData.write(0);
-    select.write(1);
+    cout<<"---WB---\n";
+    wbDir.write(1);
+    enable.write(1);
+    wait();
+    print();
+    wait();
+    print();
+    wait();
+    print();
 
     sc_stop();
   }
