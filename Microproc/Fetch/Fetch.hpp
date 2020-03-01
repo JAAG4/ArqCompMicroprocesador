@@ -29,7 +29,7 @@ SC_MODULE (Fetch) {
     char temp[ISZ];
     sc_uint<ISZ> tempi;
     int pci = (pc.read().to_int() * (ISZ)) ;
-    cout<<"byte<"<<pci<<">";
+    //cout<<"byte<"<<pci<<">";
 
     instrMem.seekg(pci,ios::beg);
 
@@ -39,7 +39,7 @@ SC_MODULE (Fetch) {
     }
 
     instrMem.read(temp,ISZ);
-    std::cout << "temp"<<temp<< '\n';
+    //std::cout << "temp"<<temp<< '\n';
     for (int i = 0; i < ISZ; i++) {
     tempi[ISZ-i-1] = temp[i] - '0';
 

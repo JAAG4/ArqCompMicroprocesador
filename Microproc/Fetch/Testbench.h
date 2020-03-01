@@ -28,7 +28,7 @@ SC_MODULE(Testbench) {
   }
   void test() {
     cout << "\n"
-         << "PC\tInstrucción(BIN) | (DEC) | CLK |"
+         << "PC\tInstrucción(BIN) | (DEC) | CLK/t |"
          << "\n----------------------------------------------------------------\n";
 
 
