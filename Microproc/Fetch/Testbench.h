@@ -10,13 +10,13 @@ SC_MODULE(Testbench) {
   sc_in<bool> clk;
   int clkc=0;
   sc_in< sc_uint<ISZ> > instruction;
-  sc_in< sc_uint<PRECISION> > pc;
+  sc_in< sc_uint<PRECISION> > pc_log;
 
   sc_out<sc_uint<PRECISION>> wbDir;
   sc_out<bool> enable;
 
   void print() {
-    cout<<"|"<<setw(2)<<pc.read().to_int()<<"|"<<" ";
+    cout<<"|"<<setw(2)<<pc_log.read().to_int()<<"|"<<" ";
     cout << "\t";
 
     for (int i = 0; i < 14; ++i)
@@ -26,7 +26,7 @@ SC_MODULE(Testbench) {
     cout<<"["<<clk<<"]["<<clkc<<"]";
     cout <<"\n";
   }
-  void test() {
+  void test() {//-
     cout << "\n"
          << "PC\tInstrucción(BIN) | (DEC) | CLK/t |"
          << "\n----------------------------------------------------------------\n";
@@ -36,11 +36,12 @@ SC_MODULE(Testbench) {
       wait();
       print();
     }
-    cout<<"---WB---\n";
+    cout<<"---WB---"<<clk<<"|"<<clkc<<endl;
     wbDir.write(1);
     enable.write(1);
     wait();
     print();
+    enable.write(0);
     wait();
     print();
     wait();
@@ -49,11 +50,11 @@ SC_MODULE(Testbench) {
     sc_stop();
   }
 
-  void log(){clkc++;}
+  void log(){clkc++;}//+
 
   SC_CTOR(Testbench) {
       SC_THREAD(test);
-      sensitive<<clk.neg();
+      sensitive<<clk;
       SC_METHOD(log);
       sensitive<<clk.pos();
   }

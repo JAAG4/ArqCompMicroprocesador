@@ -16,19 +16,35 @@ SC_MODULE (Fetch) {
   sc_in<bool> clk;
 
   sc_out< sc_uint<ISZ> > instruction;
-  sc_in< sc_uint<PRECISION> > pc;
+  sc_in< sc_uint<PRECISION> > newAddr;
+  sc_in<bool>enableNewPC;
+  sc_out<sc_uint<PRECISION>>pc_log;
 
+  sc_uint<PRECISION> pc;
   SC_CTOR (Fetch) {
+    pc=0;
     instrMem.open(instrMem_filename,ios::binary);
-
+    SC_METHOD(update_pc);
+    sensitive<<clk.pos();
     SC_METHOD(fetch);
     sensitive<<clk.neg();
   }
 
-  void fetch() {
+  void update_pc(){//+
+    if( clk.read()==0 ) {  cout<<clk<<"???";return;  }
+    if(enableNewPC){
+      pc = newAddr.read();
+    }
+    else{
+      pc += 1;
+    }
+  }
+
+  void fetch() {// -
+    pc_log.write(pc);
     char temp[ISZ];
     sc_uint<ISZ> tempi;
-    int pci = (pc.read().to_int() * (ISZ)) ;
+    int pci = (pc * (ISZ)) ;
     //cout<<"byte<"<<pci<<">";
 
     instrMem.seekg(pci,ios::beg);
