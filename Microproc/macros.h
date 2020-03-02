@@ -6,7 +6,10 @@
 #define ISZ INSTRUCTION_SIZE
 #define ARGUMENTSZ 5
 #define PRECISION 8
-#define OPCODESIZE 4 
+#define OPCODESIZE 4
 enum INSTRUCTIONS_NAMES{SUM,SUB,MULT,DIV,LOAD,STORE,JZ,JNZ,JEQ,JNEQ,AND,OR};
+
+#define instrMem_filename "in.bin"
+
 
 #endif //MICROPROC_MACROS

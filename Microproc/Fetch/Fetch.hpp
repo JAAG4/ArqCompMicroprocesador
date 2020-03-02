@@ -8,7 +8,6 @@ using namespace std;
 #ifndef FETCH
 #define FETCH
 
-#define instrMem_filename "in.bin"
 
 SC_MODULE (Fetch) {
   ifstream instrMem;
