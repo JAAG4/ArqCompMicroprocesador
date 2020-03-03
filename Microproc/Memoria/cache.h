@@ -8,36 +8,41 @@
 
 using namespace std;
 
-SC_MODULE(cache) {
-	
-	sc_in <sc_uint<4> > dir;
-	sc_in <sc_uint<2*PRECISION> > data_in;
-	sc_out <sc_uint<2*PRECISION> > data_out;
-	
-	sc_uint<2*PRECISION> data[PRECISION];
-	
+SC_MODULE(Cache) {
+
+	sc_in <sc_uint<ARGUMENTSZ> > dirR1,dirR2,dirW;
+	sc_in <sc_uint<PRECISION> > data_in;
+	sc_out <sc_uint<PRECISION> > dOut1,dOut2;
+
+	sc_uint<PRECISION> data[ARGUMENTSZ];
+
 	sc_in <bool> enable;
 	sc_in <bool> clk;
 
-	void read() {
+	void read() {//-
 		if (clk.read() == 0) {
-			data_out = data[dir.read()];
-			cout << "Leyendo: data[" << dir.read() << "] almacena " << data[dir.read()] << "\n";
-		}
-	}
-	
-	void write() {
-		if (clk.read() && enable.read()) {
-			data[dir.read()] = data_in.read();
-			cout << "Escribiendo: data[" << dir.read() << "] = " << data[dir.read()] << "\n";
+			dOut1 = data[dirR1.read()];
+      dOut2 = data[dirR2.read()];
+			//cout << "Leyendo: data[" << dir.read() << "] almacena " << data[dir.read()] << "\n";
 		}
 	}
 
-	SC_CTOR(cache) {
+	void write() {//+
+		if (clk.read() && enable.read()) {
+			data[dirW.read()] = data_in.read();
+			//cout << "Escribiendo: data[" << dir.read() << "] = " << data[dir.read()] << "\n";
+		}
+	}
+
+  void save(){
+    fstream aRlog("AR.bin",ios::binary);
+  }
+
+	SC_CTOR(Cache) {
 		SC_METHOD(read);
-		sensitive << clk.neg(); 
+		sensitive << clk.neg();
 		SC_METHOD(write);
-		sensitive << clk.pos(); 
+		sensitive << clk.pos();
 	}
 };
 

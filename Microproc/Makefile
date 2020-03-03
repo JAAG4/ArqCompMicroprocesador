@@ -40,7 +40,7 @@ ifeq ($(VERSION),systemc-2.3.1c)
 endif
 
 SYSTEMC = /usr/local/$(VERSION)
-INCDIR  = -I. -I.. -IFetch -IDecoding\&Selection -Iual -I$(SYSTEMC)/include
+INCDIR  = -I. -I.. -IFetch -IDecoding\&Selection -Iual -IMemoria -I$(SYSTEMC)/include
 LIBDIR  = -L. -L.. -L$(SYSTEMC)/lib-linux$(X64)
 LIBS    = -lsystemc -lm
 
