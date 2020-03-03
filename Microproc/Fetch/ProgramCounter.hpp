@@ -3,7 +3,7 @@
 
 #include"macros.h"
 
-//using namespace std;
+
 
 SC_MODULE(ProgramCounter){
 
@@ -30,8 +30,10 @@ SC_MODULE(ProgramCounter){
 
   SC_CTOR(ProgramCounter){
     currAddr=0;
+
     SC_METHOD(change_addr);
     sensitive<<clk.neg();
+    
     SC_METHOD(exit);
     sensitive<<clk.pos();
   }

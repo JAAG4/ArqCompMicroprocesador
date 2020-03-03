@@ -3,6 +3,10 @@
 #include <iostream>
 #include "macros.h"
 
+/*
+Al hacer un salto, se "escapa" una Instrucción (en vez de ser instantaneo,al recibir el dato)
+*/
+
 using namespace std;
 
 #ifndef FETCH
@@ -30,7 +34,7 @@ SC_MODULE (Fetch) {
   }
 
   void update_pc(){//+
-    if( clk.read()==0 ) {  cout<<clk<<"???";return;  }
+    if( clk.read()==0 ) {  cout<<"???";return;  }
     if(enableNewPC){
       pc = newAddr.read();
     }
@@ -44,7 +48,7 @@ SC_MODULE (Fetch) {
     char temp[ISZ];
     sc_uint<ISZ> tempi;
     int pci = (pc * (ISZ)) ;
-    //cout<<"byte<"<<pci<<">";
+    //cout<<"fetch:"<<pc<<"||"<<newAddr.read()<<"|"<<enableNewPC<<endl;
 
     instrMem.seekg(pci,ios::beg);
 
@@ -54,7 +58,7 @@ SC_MODULE (Fetch) {
     }
 
     instrMem.read(temp,ISZ);
-    //std::cout << "temp"<<temp<< '\n';
+
     for (int i = 0; i < ISZ; i++) {
     tempi[ISZ-i-1] = temp[i] - '0';
 

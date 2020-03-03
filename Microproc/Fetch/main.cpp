@@ -17,7 +17,7 @@ int sc_main(int argv, char* argc[]) {
 
   Fetch ft("fetch");
   Testbench tb("testbench");
-  //ProgramCounter pc("pc");
+
 
   sc_signal< sc_uint<ISZ> > instruction_sg;
 
