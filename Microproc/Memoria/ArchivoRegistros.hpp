@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <macros.h>
+#include <cmath>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ SC_MODULE(ArchivoRegistros) {
 	sc_in <sc_uint<PRECISION> > data_in;
 	sc_out <sc_uint<PRECISION> > dOut1,dOut2;
 
-	sc_uint<PRECISION> data[ARGUMENTSZ];
+	sc_uint<PRECISION> data[ARZ];
 
 	sc_in <bool> enable;
 	sc_in <bool> clk;

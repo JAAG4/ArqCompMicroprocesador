@@ -33,7 +33,7 @@
 
 ## STORE
 
-`STORE R @dir padding`
+`STORE @dir R padding`
 `[R] >> @dir`
 
 

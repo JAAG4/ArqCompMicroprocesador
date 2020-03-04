@@ -1,13 +1,17 @@
 #ifndef MICROPROC_MACROS
 #define MICROPROC_MACROS
 
+#include<cmath>
+
 #define INSTRUCTIONS 10
-#define ARGUMENTSZ 5
+#define ARGUMENTSZ 8
 #define ARG_N 3
 #define PRECISION 8
 #define OPCODESIZE 4
 #define INSTRUCTION_SIZE ( ARGUMENTSZ * ARG_N + OPCODESIZE )
 #define ISZ INSTRUCTION_SIZE
+#define MEMSZ 256
+#define ARZ 256
 enum INSTRUCTIONS_NAMES{SUM,SUB,MULT,DIV,LOAD,STORE,JZ,JNZ,JEQ,JNEQ,AND,OR};
 
 #define instrMem_filename "in.bin"

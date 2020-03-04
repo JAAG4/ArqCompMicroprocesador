@@ -21,7 +21,7 @@ SC_MODULE (Fetch) {
   sc_out< sc_uint<ISZ> > instruction;
   sc_in< sc_uint<PRECISION> > newAddr;
   sc_in<bool>enableNewPC;
-  sc_out<sc_uint<PRECISION>>pc_log;
+  sc_out< sc_uint<PRECISION> >pc_log;
 
   sc_uint<PRECISION> pc;
   SC_CTOR (Fetch) {

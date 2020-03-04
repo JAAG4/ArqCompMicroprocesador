@@ -4,7 +4,7 @@
 #define SELECTION
 
 SC_MODULE(Decoding){
-  sc_in<sc_uint<ISZ>> fetchedInstruction;
+  sc_in< sc_uint<ISZ> > fetchedInstruction;
   sc_out< sc_uint<OPCODESIZE> > opcode;
   sc_out< sc_uint<ARGUMENTSZ> > arg1,arg2,arg3;
   sc_in<bool>clk;

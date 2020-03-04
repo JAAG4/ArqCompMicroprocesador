@@ -7,7 +7,7 @@
 #include "macros.h"
 SC_MODULE(Ual){
 
-  sc_in< sc_uint<4> > op_id;
+  sc_in< sc_uint<OPCODESIZE> > op_id;
   sc_in< sc_uint< PRECISION > > firstOperator;
   sc_in< sc_uint< PRECISION > > secondOperator;
   sc_out< sc_uint< PRECISION > > result;
@@ -23,16 +23,7 @@ SC_MODULE(Ual){
 
       default: result.write(0); break;
 
-      case  LOAD:
-        //let the first operator go through(used when instruction load is on the pipeline)
-        result.write( firstOperator.read() );
-        break;
-
-
-      case  STORE:
-        //let the second operator go through(used when instruction store is on the pipeline)
-        result.write( secondOperator.read() );
-        break;
+      
 
 
       case  SUM:
@@ -58,9 +49,12 @@ SC_MODULE(Ual){
 
       case DIV:
         //Division operation
-        if(secondOperator.read()==0)
+        if(secondOperator.read()==0 || firstOperator.read()==0){
           result.write(0);
-        result.write( firstOperator.read() / secondOperator.read() );
+        }
+        else{
+          result.write( firstOperator.read() / secondOperator.read() );
+        }
           break;
 
 

@@ -1,27 +1,28 @@
-#ifndef CACHE_H
-#define CACHE_H
+#ifndef MEMORIA
+#define MEMORIA
 
 #include <systemc.h>
 #include <iostream>
 #include <iomanip>
 #include <macros.h>
+#include <cmath>
 
 using namespace std;
 
 SC_MODULE(Memoria) {
 
-	sc_in <sc_uint<ARGUMENTSZ> > dirR,dirW;
-	sc_in <sc_uint<PRECISION> > data_in;
-	sc_out <sc_uint<PRECISION> > dOut;
+	sc_in <sc_uint<ARGUMENTSZ> > dirIn;
+	sc_in <sc_uint<PRECISION> > dataIn;
+	sc_out <sc_uint<PRECISION> > dataOut;
 
-	sc_uint<PRECISION> data[ARGUMENTSZ];
+	sc_uint<PRECISION> data[ MEMSZ ];
 
 	sc_in <bool> enable;
 	sc_in <bool> clk;
 
 	void read() {//-
 		if (clk.read() == 0) {
-			dOut = data[dirR1.read()];
+			dataOut = data[dirIn.read()];
 
 			//cout << "Leyendo: data[" << dir.read() << "] almacena " << data[dir.read()] << "\n";
 		}
@@ -29,7 +30,7 @@ SC_MODULE(Memoria) {
 
 	void write() {//+
 		if (clk.read() && enable.read()) {
-			data[dirW.read()] = data_in.read();
+			data[dirIn.read()] = dataIn.read();
 			//cout << "Escribiendo: data[" << dir.read() << "] = " << data[dir.read()] << "\n";
 		}
 	}
