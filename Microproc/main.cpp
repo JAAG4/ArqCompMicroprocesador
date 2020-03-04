@@ -5,8 +5,8 @@
 
 #include "Fetch.hpp"
 #include "DecodingSelection.hpp"
+#include "ArchivoRegistros.hpp"
 #include "ual.hpp"
-#include "cache.h"
 
 #include "DataPipe.hpp"
 #include "ArgPipe.hpp"
@@ -25,32 +25,35 @@ int sc_main(int argv, char* argc[]) {
   Fetch fet("fetch");
   Decoding dec("DS");
 
-  Cache aR("ar");
+  ArchivoRegistros aR("ar");
 
   InstrPipe pipeF2D("pF2D");//Instruction pipe from Fetch to Decode
 
 
 
-  sc_signal<sc_uint<ISZ>> instr_sg_0,instr_sg_1;
-  sc_signal<sc_uint<OPCODESIZE>> opcode_sig_0,opcode_sig_1;
-  sc_signal<sc_uint<PRECISION>> data_sig_0,data_sig_1,data_sig_2,arg_sig_a_d,arg_sig_b_d,aR_W_d;
-  sc_signal<sc_uint<ARGUMENTSZ>> arg_sig_a,arg_sig_b,arg_sig_c,aR_W_add;
+  sc_signal< sc_uint<ISZ> > instr_sg_0,instr_sg_1;
+  sc_signal< sc_uint<OPCODESIZE> > opcode_sig_0,opcode_sig_1;
+  sc_signal< sc_uint<PRECISION> > pc_log_sg,data_sig_0,data_sig_1,data_sig_2,arg_sig_a_d,arg_sig_b_d,f_nAddr_sg,aR_W_d;
+  sc_signal< sc_uint<ARGUMENTSZ> >  arg_sig_a,arg_sig_b,arg_sig_c,aR_W_add;
+  sc_signal< bool > aR_enable_sg,f_enableNewPC_sg;
 
 // ----==== Fetch ====----
 
   fet.instruction(instr_sg_0);
   pipeF2D.inData(instr_sg_0);
   tb.ins_fetch(instr_sg_0);
+  fet.enableNewPC(f_enableNewPC_sg);
+  fet.newAddr(f_nAddr_sg);
 
 // ----==== Fetch to Decode ====----
 
   pipeF2D.outData(instr_sg_1);
   dec.fetchedInstruction(instr_sg_1);
   tb.ins_p1(instr_sg_1);
+  fet.pc_log(pc_log_sg);
 
 // ----==== Decode ====----
 
-dec.fetchedInstruction(instr_sg_1);
 dec.opcode(opcode_sig_0);
 tb.opcd_dec(opcode_sig_0);
 
@@ -64,6 +67,7 @@ tb.a2_dec(arg_sig_b);
 
 dec.arg3(arg_sig_c);
 tb.a3_dec(arg_sig_c);
+
 //SELECTION
 
 aR.dOut1(arg_sig_a_d);
@@ -74,11 +78,13 @@ tb.sel_r2(arg_sig_b_d);
 
 aR.dirW(aR_W_add);
 aR.data_in(aR_W_d);
-
+aR.enable(aR_enable_sg);
 // ----==== Decode to ALU ====----
 
 
 // ----==== Clocks ====----
+
+  tb.clk(clock);
 
   fet.clk(clock);
   dec.clk(clock);

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-SC_MODULE(Cache) {
+SC_MODULE(ArchivoRegistros) {
 
 	sc_in <sc_uint<ARGUMENTSZ> > dirR1,dirR2,dirW;
 	sc_in <sc_uint<PRECISION> > data_in;
@@ -38,7 +38,7 @@ SC_MODULE(Cache) {
     fstream aRlog("AR.bin",ios::binary);
   }
 
-	SC_CTOR(Cache) {
+	SC_CTOR(ArchivoRegistros) {
 		SC_METHOD(read);
 		sensitive << clk.neg();
 		SC_METHOD(write);

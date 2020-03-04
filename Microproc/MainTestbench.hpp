@@ -1,6 +1,7 @@
 #ifndef TESTBENCH
 #define TESTBENCH
 #include "macros.h"
+#include "tools.hpp"
 SC_MODULE(MainTestbench){
   sc_in<bool> clk;
 
@@ -23,14 +24,14 @@ SC_MODULE(MainTestbench){
   void print(){
     cout << '\n'<< '\n';
     cout << "clk:" <<clk<<"|count:"<<clkc<< '\n';
-    cout<<"ins_fetch:"<<ins_fetch<<'\n';
-    cout<<"ins_p1:"<<ins_p1<<'\n';
-    cout<<"a1_dec:"<<a1_dec<<'\n';
-    cout<<"a2_dec:"<<a2_dec<<'\n';
-    cout<<"a3_dec:"<<a3_dec<<'\n';
-    cout<<"opcd_dec:"<<opcd_dec<<'\n';
-    cout<<"sel_r1:"<<sel_r1<<'\n';
-    cout<<"sel_r2:"<<sel_r2<<'\n';
+    cout<<"ins_fetch:";printBinary(ins_fetch);cout<<'\n';
+    cout<<"ins_p1:";printBinary(ins_p1);cout<<'\n';
+    cout<<"a1_dec:";printBinary(a1_dec);cout<<'\n';
+    cout<<"a2_dec:";printBinary(a2_dec);cout<<'\n';
+    cout<<"a3_dec:";printBinary(a3_dec);cout<<'\n';
+    cout<<"opcd_dec:";printBinary(opcd_dec);cout<<'\n';
+    cout<<"sel_r1:";printBinary(sel_r1);cout<<'\n';
+    cout<<"sel_r2:";printBinary(sel_r2);cout<<'\n';
   }
   void log(){clkc+=1;}
   SC_CTOR(MainTestbench){
